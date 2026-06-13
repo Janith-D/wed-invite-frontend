@@ -1,0 +1,690 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --cream: #fff8ef;
+  --soft-pink: #f8dfe8;
+  --blush: #f5c6d6;
+  --gold: #c9a44c;
+  --dark: #2f2a28;
+  --muted: #7a6f6a;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cream);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--dark);
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--white) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark) !important;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  font-size: 14px;
+  color: var(--muted) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  margin: 0 8px;
+}
+
+.nav-link:hover {
+  color: var(--gold) !important;
+}
+
+.btn-rsvp {
+  background-color: var(--gold);
+  color: var(--white);
+  border: none;
+  padding: 8px 24px;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.btn-rsvp:hover {
+  background-color: var(--dark);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--soft-pink) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(249, 221, 232, 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(201, 164, 76, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 1;
+  max-width: 600px;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 600;
+  margin: 20px 0;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.couple-names {
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.wedding-date {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 20px 0;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.venue-info {
+  font-size: 15px;
+  color: var(--dark);
+  margin: 15px 0 30px;
+  font-weight: 400;
+}
+
+.gold-line {
+  width: 60px;
+  height: 2px;
+  background-color: var(--gold);
+  margin: 20px auto;
+}
+
+.btn-primary-gold {
+  background-color: var(--gold);
+  color: var(--white);
+  border: 2px solid var(--gold);
+  padding: 14px 40px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 20px;
+}
+
+.btn-primary-gold:hover {
+  background-color: var(--dark);
+  border-color: var(--dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(201, 164, 76, 0.2);
+}
+
+/* Invitation Message */
+.invitation-section {
+  padding: 80px 20px;
+  background-color: var(--white);
+  text-align: center;
+}
+
+.invitation-content {
+  max-width: 700px;
+  margin: 0 auto;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.invitation-content h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+
+.invitation-message {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+/* Couple Story Section */
+.couple-story {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--soft-pink) 0%, var(--blush) 100%);
+}
+
+.section-title {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 60px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+
+.story-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.story-item {
+  margin-bottom: 60px;
+}
+
+.story-item:nth-child(even) {
+  text-align: right;
+}
+
+.story-text {
+  font-size: 16px;
+  color: var(--dark);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  max-width: 500px;
+  margin-left: auto;
+}
+
+.story-item:nth-child(odd) .story-text {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.story-image-card {
+  width: 100%;
+  max-width: 350px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  margin: 30px auto 0;
+  border: 1px solid rgba(201, 164, 76, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.story-image-card:hover {
+  transform: translateY(-5px);
+}
+
+.story-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Events Details */
+.events-section {
+  padding: 80px 20px;
+  background-color: var(--white);
+}
+
+.event-card {
+  background-color: var(--cream);
+  padding: 40px 25px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  border: 2px solid rgba(201, 164, 76, 0.2);
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(201, 164, 76, 0.1);
+}
+
+.event-card h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.event-time {
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.event-venue {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+.event-description {
+  font-size: 14px;
+  color: var(--dark);
+  line-height: 1.7;
+}
+
+/* Countdown */
+.countdown-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--blush) 0%, var(--soft-pink) 100%);
+  text-align: center;
+}
+
+.countdown-section h2 {
+  margin-bottom: 50px;
+  font-size: 36px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.countdown-item {
+  background-color: var(--white);
+  padding: 25px 15px;
+  border-radius: 15px;
+  border: 2px solid rgba(201, 164, 76, 0.2);
+  transition: all 0.3s ease;
+}
+
+.countdown-item:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+}
+
+.countdown-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+}
+
+.countdown-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Venue Section */
+.venue-section {
+  padding: 80px 20px;
+  background-color: var(--white);
+}
+
+.venue-section h2 {
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 36px;
+}
+
+.map-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(201, 164, 76, 0.2);
+  aspect-ratio: 16 / 9;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* RSVP Form */
+.rsvp-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--soft-pink) 0%, var(--cream) 100%);
+}
+
+.rsvp-form-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--white);
+  padding: 50px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(201, 164, 76, 0.15);
+}
+
+.rsvp-form-card h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid rgba(201, 164, 76, 0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  background-color: var(--cream);
+  color: var(--dark);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 164, 76, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--gold);
+  color: var(--white);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+}
+
+.btn-submit:hover {
+  background-color: var(--dark);
+  border-color: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+footer {
+  background-color: var(--dark);
+  color: var(--white);
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.footer-content h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.footer-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+.footer-divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--gold);
+  margin: 20px auto;
+}
+
+/* Page Section */
+.page-section {
+  padding: 100px 20px 60px;
+  min-height: 80vh;
+  background-color: var(--cream);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .couple-names {
+    font-size: 22px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .countdown-number {
+    font-size: 24px;
+  }
+
+  .story-item:nth-child(even) {
+    text-align: left;
+  }
+
+  .story-item:nth-child(even) .story-text {
+    margin-left: 0;
+  }
+
+  .rsvp-form-card {
+    padding: 30px 20px;
+  }
+
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .navbar-brand {
+    font-size: 20px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    margin: 0 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 60px 16px 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .couple-names {
+    font-size: 18px;
+  }
+
+  .wedding-date {
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .countdown-item {
+    padding: 18px 10px;
+  }
+
+  .countdown-number {
+    font-size: 20px;
+  }
+
+  .countdown-label {
+    font-size: 10px;
+  }
+
+  .event-card {
+    padding: 25px 15px;
+  }
+
+  .invitation-content h2 {
+    font-size: 26px;
+  }
+
+  .invitation-message {
+    font-size: 14px;
+  }
+
+  .rsvp-form-card {
+    padding: 25px 16px;
+  }
+
+  .rsvp-form-card h2 {
+    font-size: 26px;
+  }
+
+  .invitation-section,
+  .couple-story,
+  .events-section,
+  .countdown-section,
+  .venue-section,
+  .rsvp-section {
+    padding: 50px 16px;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.8s ease;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll animations */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+

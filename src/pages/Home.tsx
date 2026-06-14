@@ -1,13 +1,36 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Countdown from '../components/Countdown';
 import { useEffect, useState } from 'react';
 
 function Home() {
-  const [scrollElements, setScrollElements] = useState<HTMLElement[]>([]);
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    attendance: '',
+    guests: '1',
+    dietary: '',
+    message: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('RSVP Data:', formData);
+    navigate('/thank-you');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      scrollElements.forEach((element) => {
+      const elements = document.querySelectorAll('.scroll-fade');
+      elements.forEach((element) => {
         const elementTop = element.getBoundingClientRect().top;
         const elementBottom = element.getBoundingClientRect().bottom;
 
@@ -17,12 +40,11 @@ function Home() {
       });
     };
 
-    const elements = document.querySelectorAll('.scroll-fade');
-    setScrollElements(Array.from(elements) as HTMLElement[]);
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrollElements]);
+  }, []);
 
   return (
     <>
@@ -37,9 +59,9 @@ function Home() {
 
           <Countdown />
 
-          <Link to="/rsvp" className="btn-primary-gold">
+          <a href="#rsvp-section" className="btn-primary-gold">
             RSVP NOW
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -114,6 +136,59 @@ function Home() {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <section style={{ padding: '80px 20px', backgroundColor: 'var(--white)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
+          <h2 className="section-title scroll-fade">Our Gallery</h2>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '20px',
+              marginTop: '50px',
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6].map((image) => (
+              <div
+                key={image}
+                style={{
+                  height: '300px',
+                  borderRadius: '15px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                  border: '2px solid rgba(201, 164, 76, 0.2)',
+                  transition: 'transform 0.3s ease, border-color 0.3s ease',
+                  cursor: 'pointer',
+                }}
+                className="scroll-fade"
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-5px)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'var(--gold)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(201, 164, 76, 0.2)';
+                }}
+              >
+                <img
+                  src={`/images/gallery-${image}.jpg`}
+                  alt={`Gallery ${image}`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.src = `https://via.placeholder.com/300x300?text=Photo+${image}`;
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Events Section */}
       <section className="events-section">
         <h2 className="section-title scroll-fade">Wedding Events</h2>
@@ -167,32 +242,72 @@ function Home() {
           <iframe
             title="Wedding Venue"
             src="https://www.google.com/maps?q=Colombo,Sri%20Lanka&output=embed"
-            allowFullScreen=""
+            allowFullScreen
             loading="lazy"
           ></iframe>
+        </div>
+
+        <div
+          style={{
+            maxWidth: '800px',
+            margin: '60px auto 0',
+            padding: '0 20px',
+            textAlign: 'center',
+          }}
+          className="scroll-fade"
+        >
+          <h3 style={{ marginBottom: '15px', fontSize: '24px' }}>Venue Details</h3>
+          <div className="gold-line" style={{ margin: '15px auto' }}></div>
+          <p style={{ color: 'var(--muted)', lineHeight: '1.8', fontSize: '15px' }}>
+            Grand Ballroom Hotel is a luxury venue in the heart of Colombo, featuring elegant
+            architecture and world-class hospitality. Easy parking available for all guests.
+          </p>
+          <p style={{ color: 'var(--muted)', marginTop: '15px', fontSize: '14px' }}>
+            <strong>Address:</strong> Grand Ballroom Hotel, Colombo, Sri Lanka
+          </p>
         </div>
       </section>
 
       {/* RSVP Section */}
-      <section className="rsvp-section">
+      <section id="rsvp-section" className="rsvp-section">
         <div className="rsvp-form-card scroll-fade">
           <h2>Confirm Your Attendance</h2>
           <div className="gold-line"></div>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label className="form-label">Full Name *</label>
-              <input type="text" className="form-input" required />
+              <input
+                type="text"
+                name="name"
+                className="form-input"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">Email Address *</label>
-              <input type="email" className="form-input" required />
+              <input
+                type="email"
+                name="email"
+                className="form-input"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">Will you attend? *</label>
-              <select className="form-select" required>
+              <select
+                name="attendance"
+                className="form-select"
+                value={formData.attendance}
+                onChange={handleChange}
+                required
+              >
                 <option value="">Please select</option>
                 <option value="yes">Yes, I will attend</option>
                 <option value="no">Sorry, I cannot attend</option>
@@ -201,22 +316,42 @@ function Home() {
 
             <div className="form-group">
               <label className="form-label">Number of Guests</label>
-              <input type="number" className="form-input" min="1" defaultValue="1" />
+              <input
+                type="number"
+                name="guests"
+                className="form-input"
+                value={formData.guests}
+                onChange={handleChange}
+                min="1"
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">Dietary Restrictions</label>
-              <input type="text" className="form-input" placeholder="None, Vegetarian, Vegan, etc." />
+              <input
+                type="text"
+                name="dietary"
+                className="form-input"
+                placeholder="None, Vegetarian, Vegan, etc."
+                value={formData.dietary}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label">Message & Wishes</label>
-              <textarea className="form-textarea" placeholder="Share your wishes for us..."></textarea>
+              <textarea
+                name="message"
+                className="form-textarea"
+                placeholder="Share your wishes for us..."
+                value={formData.message}
+                onChange={handleChange}
+              ></textarea>
             </div>
 
-            <Link to="/rsvp" className="btn-submit" style={{ textDecoration: 'none' }}>
+            <button type="submit" className="btn-submit">
               SUBMIT RSVP
-            </Link>
+            </button>
           </form>
         </div>
       </section>
